@@ -4,7 +4,6 @@ var socket = io(); // websocket to the server
 var previousPosition = [0, 0]; // previous position to draw a line from
 var ctx = Sketch.create(); //Creating the drawing context
 var firstMessage = true; // What the first message, to start on the first value
-var colorList = [colors.black, colors.red, colors.green, colors.yellow, colors.blue, colors.magenta, colors.cyan, colors.gray];
 
 ctx.container = document.getElementById('container'); //reference drawing canvas
 ctx.autoclear = false; // making sure it stays
@@ -21,7 +20,9 @@ socket.on('reset', function() { // on a 'reset' message clean and reste firstMes
 	ctx.clear();
 });
 
-socket.on('color', function() {});
+socket.on('color', function(newColor) {
+	colour = newColor;
+});
 
 socket.on('new-pos', function(newPosition) { // handling new sensor values
 
@@ -34,7 +35,7 @@ socket.on('new-pos', function(newPosition) { // handling new sensor values
 	} else { // any other message we use to draw.
 		ctx.lineCap = 'round';
 		ctx.lineJoin = 'round';
-		ctx.fillStyle = ctx.strokeStyle = Sketch.random(colorList);
+		ctx.fillStyle = ctx.strokeStyle = colour;
 		ctx.lineWidth = radius;
 		ctx.beginPath(); //begin a adrawing
 		ctx.moveTo(previousPosition[0], previousPosition[1]); // from

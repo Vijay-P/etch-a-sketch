@@ -5,7 +5,7 @@ var io = require('socket.io')(http); // connect websocket library to server
 var serverPort = 8000;
 var serialPort = require('serialport'); // serial library
 var readLine = serialPort.parsers.Readline; // read serial data as lines
-var colorList = ["FF0000", "00FF00", "0000FF", "FF00FF", "FFFF00", "00FFFF"];
+var colorList = ["#FF0000", "#00FF00", "#0000FF", "#FF00FF", "#FFFF00", "#00FFFF"];
 
 //---------------------- WEBAPP SERVER SETUP ---------------------------------//
 // use express to create the simple webapp

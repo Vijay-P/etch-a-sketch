@@ -21,7 +21,6 @@ socket.on('reset', function() { // on a 'reset' message clean and reste firstMes
 
 socket.on('color', function(newColor) {
 	colour = newColor;
-	console.log(colour);
 });
 
 socket.on('new-pos', function(newPosition) { // handling new sensor values

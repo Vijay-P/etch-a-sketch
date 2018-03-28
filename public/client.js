@@ -30,7 +30,7 @@ socket.on('new-pos', function(newPosition) { // handling new sensor values
 	} else { // any other message we use to draw.
 		ctx.lineCap = 'round';
 		ctx.lineJoin = 'round';
-		ctx.fillStyle = ctx.strokeStyle = random(colors);
+		ctx.fillStyle = ctx.strokeStyle = Sketch.random(colors);
 		ctx.lineWidth = radius;
 		ctx.beginPath(); //begin a adrawing
 		ctx.moveTo(previousPosition[0], previousPosition[1]); // from

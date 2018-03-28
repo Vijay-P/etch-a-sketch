@@ -1,4 +1,3 @@
-var colors = require('colors');
 var express = require('express'); // web server application
 var app = express(); // webapp
 var http = require('http').Server(app); // connects http library to server
@@ -6,7 +5,7 @@ var io = require('socket.io')(http); // connect websocket library to server
 var serverPort = 8000;
 var serialPort = require('serialport'); // serial library
 var readLine = serialPort.parsers.Readline; // read serial data as lines
-var colorList = [colors.black, colors.red, colors.green, colors.yellow, colors.blue, colors.magenta, colors.cyan, colors.gray];
+var colorList = ["FF0000", "00FF00", "0000FF", "FF00FF", "FFFF00", "00FFFF"];
 
 //---------------------- WEBAPP SERVER SETUP ---------------------------------//
 // use express to create the simple webapp

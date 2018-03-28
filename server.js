@@ -33,26 +33,27 @@ const parser = new readLine({
 // Read data that is available on the serial port and send it to the websocket
 serial.pipe(parser);
 parser.on('data', function(data) { // on data from the arduino
-			if (data == 'rst') { // if its the 'rst' string call reset
-				io.emit('reset');
-			} else { // any other data we try to forward by spliting it
-				var transmitData = [data.split(',')[0], data.split(',')[1]];
-				io.emit('new-pos', transmitData);
-				io.emit('color', colorList[Math.floor(Math.random() * colorList.length)];
-				}
-			});
-		//----------------------------------------------------------------------------//
+	if (data == 'rst') { // if its the 'rst' string call reset
+		io.emit('reset');
+	} else { // any other data we try to forward by spliting it
+		var transmitData = [data.split(',')[0], data.split(',')[1]];
+		io.emit('new-pos', transmitData);
+		var newColor = colorList[Math.floor(Math.random() * colorList.length)];
+		io.emit('color', newColor);
+	}
+});
+//----------------------------------------------------------------------------//
 
 
-		//---------------------- WEBSOCKET COMMUNICATION -----------------------------//
-		// this is the websocket event handler and say if someone connects
-		// as long as someone is connected, listen for messages
-		io.on('connect', function(socket) {
-			console.log('a user connected');
-			io.emit('reset'); // call reset to make sure the website is clean
+//---------------------- WEBSOCKET COMMUNICATION -----------------------------//
+// this is the websocket event handler and say if someone connects
+// as long as someone is connected, listen for messages
+io.on('connect', function(socket) {
+	console.log('a user connected');
+	io.emit('reset'); // call reset to make sure the website is clean
 
-			// if you get the 'disconnect' message, say the user disconnected
-			io.on('disconnect', function() {
-				console.log('user disconnected');
-			});
-		});
+	// if you get the 'disconnect' message, say the user disconnected
+	io.on('disconnect', function() {
+		console.log('user disconnected');
+	});
+});

@@ -3,7 +3,7 @@
 #define INP1 1  // button
 
 unsigned long targetTime=0;
-const unsigned long interval=500; //TODO: How fast should we read
+const unsigned long interval=100;
 const int buttonPin = 0;
 int buttonState = 0;
 int xPos = 0;
@@ -23,6 +23,6 @@ void loop(){
 	}
     buttonState = digitalRead(buttonPin);
     if (buttonState == LOW) {
-        Serial.println(String("rst"));
+        Serial.println("rst");
     }
 }

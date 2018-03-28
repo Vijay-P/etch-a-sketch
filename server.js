@@ -38,6 +38,7 @@ parser.on('data', function(data) { // on data from the arduino
 		var transmitData = [data.split(',')[0], data.split(',')[1]];
 		io.emit('new-pos', transmitData);
 		var newColor = colorList[Math.floor(Math.random() * colorList.length)];
+		console.log(newColor);
 		io.emit('color', newColor);
 	}
 });
